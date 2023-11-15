@@ -1,13 +1,13 @@
 #include "main.h"
 
-void print buffer(char buffer[], int *buff_ind);
+void print_buffer(char buffer[], int *buff_ind);
 
 /**
  * _printf - printf function
  * @format: format
- *
  * Return: chars.
  *
+ *created by Francisco Tivane
  */
 
 int _printf(const char *format, ...)
