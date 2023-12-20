@@ -20,7 +20,7 @@ int _printf(const char *format, ...)
 	if (format == NULL)
 		return (-1);
 
-	va start(list, format);
+	va_start(list, format);
 
 	for (i = 0; format && format[i] != '\0'; i++)
 	{
@@ -29,7 +29,7 @@ int _printf(const char *format, ...)
 			buffer[buff_ind++] = format[i];
 
 			if (buff_ind == BUFF_SIZE)
-				print_buffer(buffer, &&buff_ind);
+				print_buffer(buffer, &buff_ind);
 			/* write(1, &format[i], 1);*/
 			printed_chars++;
 		}
@@ -41,7 +41,7 @@ int _printf(const char *format, ...)
 			precision = get_precision(format, &i, list);
 			size = get_size(format, &i);
 			++i;
-			printed - handle_print(format, &i, list, buffer, flags,
+			printed = handle_print(format, &i, list, buffer, flags,
 					width, precision, size);
 
 			if (printed == -1)
@@ -62,6 +62,6 @@ int _printf(const char *format, ...)
 void print_buffer(char buffer[], int *buff_ind)
 {
 	if (*buff_ind > 0)
-		whrite(1, &buffer[0], *buff_ind);
+		write(1, &buffer[0], *buff_ind);
 	*buff_ind = 0;
 }

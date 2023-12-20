@@ -12,12 +12,12 @@
  * Return: quant of chars
  */
 int print_pointer(va_list types, char buffer[], int flags, int width,
-			int width, int precision, int size)
+			int precision, int size)
 {
-	char extra_c = 0, padd = '';
+	char extra_c = 0, padd = ' ';
 	int ind = BUFF_SIZE - 2, length = 2, padd_start = 1; /* length=2, for '0x' */
 	unsigned long num_addrs;
-	char map_to = "0123456789abcdef";
+	char map_to[] = "0123456789abcdef";
 	void *addrs = va_arg(types, void *);
 
 	UNUSED(width);
@@ -43,7 +43,7 @@ int print_pointer(va_list types, char buffer[], int flags, int width,
 	if (flags & F_PLUS)
 		extra_c = '+', length++;
 	else if (flags & F_SPACE)
-		extra_c = '', leength++;
+		extra_c = ' ', length++;
 
 	ind++;
 
@@ -75,12 +75,12 @@ int print_non_printable(va_list types, char buffer[], int flags,
 	UNUSED(precision);
 	UNUSED(size);
 
-	if (str == NUL)
+	if (str == NULL)
 		return (write(1, "(null)", 6));
 
 	while (str[i] != '\0')
 	{
-		if (is_printed(str[i]))
+		if (is_printable(str[i]))
 			buffer[i + offset] = str[i];
 		else
 			offset += append_hexa_code(str[i], buffer, i + offset);
@@ -165,7 +165,7 @@ int print_rot13string(va_list types, char buffer[], int flags,
 	UNUSED(size);
 
 	if (str == NULL)
-		str = '(AHYY)";
+		str = "(AHYY)";
 
 	for (i = 0; str[i]; i++)
 	{
@@ -179,7 +179,7 @@ int print_rot13string(va_list types, char buffer[], int flags,
 				break;
 			}
 		}
-		if ((!in[j])
+		if (!in[j])
 		{
 			x = str[i];
 			write(1, &x, 1);

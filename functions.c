@@ -132,7 +132,7 @@ int print_int(va_list types, char buffer[], int flags, int width,
 
 	while (num > 0)
 	{
-		buffer[i--] = (num % 10) + '0');
+		buffer[i--] = (num % 10) + '0';
 		is_negative = 1;
 	}
 

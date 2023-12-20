@@ -14,7 +14,7 @@ int handle_write_char(char c, char buffer[],
 		int flags, int width, int precision, int size)
 {/* char is stored at left and padding at buffer's right */
 	int i = 0;
-	char padd == ' ';
+	char padd = ' ';
 
 	UNUSED(precision);
 	UNUSED(size);
@@ -125,7 +125,7 @@ int write_num(int ind, char buffer[],
 }	
 
 /**
- * write_unsend - writes an unsend number
+ * write_unsgnd - writes an unsend number
  * @is_negative: number indicating if the num is negative
  * @ind: index at which the number start in the buffer
  * @buffer: array of chars
@@ -136,7 +136,7 @@ int write_num(int ind, char buffer[],
  *
  * Return: number of written chars
  */
-int write_unsigned(int is_negative, int ind,
+int write_unsgnd(int is_negative, int ind,
 		char buffer[], int flags, int width,
 		int precision, int size)
 {
@@ -162,7 +162,7 @@ int write_unsigned(int is_negative, int ind,
 	if ((flags & F_ZERO) && !(flags & F_MINUS))
 		padd = '0';
 
-	if (width > lenght)
+	if (width > length)
 	{
 		for (i = 0; i < width - length; i++)
 			buffer[i] = padd;
@@ -199,7 +199,7 @@ int write_pointer(char buffer[], int ind, int length,
 {
 	int i;
 
-	if (width > lengthn)
+	if (width > length)
 	{
 		for (i = 3; i < width - length + 3; i++)
 			buffer[i] = padd;
